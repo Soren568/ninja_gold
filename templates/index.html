@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style.css') }}">
+</head>
+<body>
+    <div class="container p-5 d-flex flex-column">
+        <div class="gold_count d-flex align-items-middle mb-4">
+            <p class="fs-6 vertical-align-center">Your Gold: </p>
+            <input class="form-control gold-display ms-2" type="text" value="{{session['gold']}}" aria-label="readonly input example" readonly>
+        </div>
+        <div class="cards_container d-flex justify-content-between mb-4">
+            <div class="card d-flex flex-column p-5">
+                <h1 class="display-6">Farm</h1>
+                <p>(earns 10-20 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="chosen_button" value="farm">
+                    <button class="btn btn-warning border border-dark border-1">Find Gold!</button>
+                </form>
+            </div>
+            <div class="card d-flex flex-column p-5">
+                <h1 class="display-6">Cave</h1>
+                <p>(earns 5-10 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="chosen_button" value="cave">
+                    <button class="btn btn-warning border border-dark border-1">Find Gold!</button>
+                </form>
+            </div>
+            <div class="card d-flex flex-column p-5">
+                <h1 class="display-6">House</h1>
+                <p>(earns 2-5 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="chosen_button" value="house">
+                    <button class="btn btn-warning border border-dark border-1">Find Gold!</button>
+                </form>
+            </div>
+            <div class="card d-flex flex-column p-5">
+                <h1 class="display-6">Casino</h1>
+                <p>(earns/takes 0-50 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="chosen_button" value="casino">
+                    <button class="btn btn-warning border border-dark border-1">Find Gold!</button>
+                </form>
+            </div>
+        </div>
+        <div class="activities mb-3">
+            <p class="fs-6 mb-1">Activities:</p>
+            <input class="form-control activity-display text-bottom" type="text" value="You have received: {{session['gold_received']}}" aria-label="readonly actvities log" readonly>
+        </div>
+        <a class="btn btn-danger reset_button" href="/reset">Reset</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+</html>
